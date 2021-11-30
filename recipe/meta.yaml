@@ -1,5 +1,5 @@
 {% set name = "des-y6utils" %}
-{% set version = "0.1.0" %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/des-science/des-y6utils/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 5c94615d796275a0c97e0ec0b823ab3c75b9e6a11427a58c20323f43cfc95af4
+  sha256: ee3c3271ac6092696efa04b328eb3b6145ad1a0377fcd5db00dca5f76d54fd0e
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -39,7 +39,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: 'random bits of useful code for Y6 analysis'
+  summary: random bits of useful code for Y6 analysis
 
 extra:
   recipe-maintainers:
