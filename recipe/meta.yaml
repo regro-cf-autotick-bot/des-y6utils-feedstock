@@ -1,5 +1,5 @@
 {% set name = "des-y6utils" %}
-{% set version = "0.5.0" %}
+{% set version = "0.6.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/des-science/des-y6utils/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 33bf25fa71b0a77a4e6149ab88b22a36ef2f8123e0965d6a6fd174fef8c73dac
+  sha256: 21dd9035c9cd725a4e51cfa20826a13acdb00dae5f72922c9c4c0bbe2e2ab814
 
 build:
   noarch: python
