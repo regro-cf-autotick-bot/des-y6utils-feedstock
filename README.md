@@ -1,11 +1,11 @@
-About des-y6utils
-=================
+About des-y6utils-feedstock
+===========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/des-y6utils-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/des-science/des-y6utils
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/des-y6utils-feedstock/blob/main/LICENSE.txt)
 
 Summary: random bits of useful code for Y6 analysis
 
