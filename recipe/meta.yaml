@@ -21,6 +21,9 @@ build:
   skip: true  # [win or py >= 312]
   number: {{ build }}
   string: "{{ piff }}_h{{ PKG_HASH }}_{{ build }}"
+  # weigh down eastlake version with track features
+  track_features:                # [piff == "eastlake"]
+    - des_y6utils_piff_eastlake  # [piff == "eastlake"]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
