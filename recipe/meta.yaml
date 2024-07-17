@@ -18,7 +18,7 @@ source:
   sha256: a4bc96794f9981b3b8f629705e69b73a3057916b337fbb0c06ed3ea3ee002d2e
 
 build:
-  skip: true  # [win]
+  skip: true  # [win or py >= 312]
   number: {{ build }}
   string: "{{ piff }}_h{{ PKG_HASH }}_{{ build }}"
   script: {{ PYTHON }} -m pip install . -vv
