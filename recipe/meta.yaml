@@ -1,6 +1,14 @@
 {% set name = "des-y6utils" %}
 {% set version = "0.10.0" %}
 
+{% set piff = piff or 'cf' %}
+
+{% set build = 0 %}
+{% if piff == 'cf' %}
+# prioritize piff package
+{% set build = build + 100 %}
+{% endif %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -11,7 +19,8 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: {{ build }}
+  string: "{{ piff }}_h{{ PKG_HASH }}_{{ build }}"
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
@@ -25,10 +34,13 @@ requirements:
     - ngmix
     - galsim
     - numpy
-    - piff
+    - piff  # [piff == "cf"]
     - scipy
     - scikit-learn
     - healsparse
+  # use run constrained to avoid a circular dependency
+  run_constrained:        # [piff == "eastlake"]
+    - des-eastlake >=0.9  # [piff == "eastlake"]
 
 test:
   imports:
