@@ -1,6 +1,14 @@
 {% set name = "des-y6utils" %}
 {% set version = "0.10.0" %}
 
+{% set piff = piff or 'cf' %}
+
+{% set build = 0 %}
+{% if piff == 'cf' %}
+# prioritize piff package
+{% set build = build + 100 %}
+{% endif %}
+
 package:
   name: {{ name|lower }}
   version: {{ version }}
@@ -10,25 +18,35 @@ source:
   sha256: a4bc96794f9981b3b8f629705e69b73a3057916b337fbb0c06ed3ea3ee002d2e
 
 build:
-  noarch: python
-  number: 0
+  skip: true  # [win or py >= 312]
+  number: {{ build }}
+  string: "{{ piff }}_h{{ PKG_HASH }}_{{ build }}"
+  # weigh down eastlake version with track features
+  track_features:                # [piff == "eastlake"]
+    - des_y6utils_piff_eastlake  # [piff == "eastlake"]
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
+  build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
   host:
-    - python >=3.7
+    - python
     - pip
     - setuptools_scm
     - setuptools_scm_git_archive
   run:
-    - python >=3.7
+    - python
     - ngmix
     - galsim
     - numpy
-    - piff
+    - piff  # [piff == "cf"]
     - scipy
     - scikit-learn
     - healsparse
+  # use run constrained to avoid a circular dependency
+  run_constrained:        # [piff == "eastlake"]
+    - des-eastlake >=0.9  # [piff == "eastlake"]
 
 test:
   imports:
