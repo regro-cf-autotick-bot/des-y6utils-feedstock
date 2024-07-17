@@ -18,19 +18,19 @@ source:
   sha256: a4bc96794f9981b3b8f629705e69b73a3057916b337fbb0c06ed3ea3ee002d2e
 
 build:
-  noarch: python
+  skip: true  # [win]
   number: {{ build }}
   string: "{{ piff }}_h{{ PKG_HASH }}_{{ build }}"
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.7
+    - python
     - pip
     - setuptools_scm
     - setuptools_scm_git_archive
   run:
-    - python >=3.7
+    - python
     - ngmix
     - galsim
     - numpy
